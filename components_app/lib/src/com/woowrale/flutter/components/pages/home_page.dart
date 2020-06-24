@@ -1,3 +1,4 @@
+import 'package:app/src/com/woowrale/flutter/components/utils/icons_utils.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app/src/com/woowrale/flutter/components/providers/menu_provider.dart';
@@ -8,32 +9,40 @@ class HomePage extends StatelessWidget {
     return MaterialApp(
       title: 'Components App',
       home: Scaffold(
-        appBar: AppBar(
-          title: Text('Components'),
-        ),
-        body: buildWidgetList()
-      ),
+          appBar: AppBar(
+            title: Text('Components'),
+          ),
+          body: _buildWidgetList()),
     );
   }
 
-  buildWidgetList() {
-    print(menuProviver.options);
-    return ListView(
-      children: _buildListItems(),
+  Widget _buildWidgetList() {
+    return FutureBuilder(
+      future: menuProviver.loadData(),
+      initialData: [],
+      builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
+        if (snapshot.hasData) {
+          return ListView(
+            children: _buildListItems(snapshot.data),
+          );
+        }
+      },
     );
   }
 
-  List<Widget> _buildListItems(){
-    return [
-      ListTile(title: Text('Hola Mundo')),
-      Divider(),
-      ListTile(title: Text('Hola Mundo')),
-      Divider(),
-      ListTile(title: Text('Hola Mundo')),
-      Divider(),
-      ListTile(title: Text('Hola Mundo')),
-      Divider(),
-      ListTile(title: Text('Hola Mundo')),
-    ];
+  List<Widget> _buildListItems(List<dynamic> options) {
+    final List<Widget> widgetLits = new List<Widget>();
+
+    for (dynamic option in options) {
+      widgetLits.add(new ListTile(
+        title: Text(option['text']),
+        leading: getIcon(option['icon']),
+        trailing: Icon(Icons.keyboard_arrow_right, color: Colors.blueAccent),
+        onTap: () {},
+      ));
+      widgetLits.add(Divider());
+    }
+
+    return widgetLits;
   }
 }
