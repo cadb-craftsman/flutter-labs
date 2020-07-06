@@ -1,6 +1,8 @@
+
 import 'package:flutter/material.dart';
 
-import 'package:app/src/com/woowrale/components/pages/home_page.dart';
+import 'package:components/src/com/woowrale/app/routes/routes.dart';
+import 'package:components/src/com/woowrale/app/pages/alert_page.dart';
 
 void main() => runApp(ComponentApp());
 
@@ -9,7 +11,15 @@ class ComponentApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Components App',
-      home: HomePage()
+      debugShowCheckedModeBanner: false,
+      //home: HomePage(),
+      initialRoute: '/',
+      routes: getAppRoutes(),
+      onGenerateRoute: (settings) {
+        print('Call Path ${settings.name}');
+        return MaterialPageRoute(
+            builder: (BuildContext context) => AlertPage());
+      },
     );
   }
 }

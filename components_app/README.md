@@ -1,6 +1,6 @@
-# app
+# components
 
-A new Flutter application.
+Flutter components app.
 
 ## Getting Started
 
