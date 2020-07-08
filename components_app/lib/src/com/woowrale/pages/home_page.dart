@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:components/src/com/woowrale/app/providers/menu_provider.dart';
-import 'package:components/src/com/woowrale/app/utils/icons_utils.dart';
+import 'package:components/src/com/woowrale/providers/menu_provider.dart';
+import 'package:components/src/com/woowrale/utils/icons_utils.dart';
 
 class HomePage extends StatelessWidget {
   @override
