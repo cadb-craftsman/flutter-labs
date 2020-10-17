@@ -1,20 +1,40 @@
 {
-    "appName" : "Components",
-    "paths" : [
-        {
-            "path" : "alert",
-            "icon" : "add_alert",
-            "text": "Alerts"
-        },
-        {
-            "path" : "avatar",
-            "icon" : "accessibility",
-            "text": "Avatars"
-        },
-        {
-            "path" : "card",
-            "icon" : "folder_open",
-            "text": "Cards - Tarjetas"
-        }
-    ]
+  "appName": "Components",
+  "paths": [
+    {
+      "path": "alert",
+      "icon": "add_alert",
+      "text": "Alerts"
+    },
+    {
+      "path": "avatar",
+      "icon": "accessibility",
+      "text": "Avatars"
+    },
+    {
+      "path": "card",
+      "icon": "folder_open",
+      "text": "Cards - Tarjetas"
+    },
+    {
+      "path": "animatedContainer",
+      "icon": "donut_large",
+      "text": "Animated Container"
+    },
+    {
+      "path": "inputs",
+      "icon": "input",
+      "text": "Inputs"
+    },
+    {
+      "path": "slider",
+      "icon": "slider",
+      "text": "Slider"
+    },
+    {
+      "path": "listview",
+      "icon": "listview",
+      "text": "ListViews & Scroll"
+    }
+  ]
 }
