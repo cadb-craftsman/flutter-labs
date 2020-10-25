@@ -38,17 +38,26 @@ class CardMovie extends StatelessWidget {
 
   Widget getCard(BuildContext context, Movie movie) {
     final _screenSize = MediaQuery.of(context).size;
-    final movieCard = Container(
+    movie.movieId = '${movie.id}-card-movie';
+    return Container(
       margin: EdgeInsets.only(right: 15.0),
       child: Column(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20.0),
-            child: FadeInImage(
-              image: NetworkImage(movie.getPosterImage()),
-              placeholder: AssetImage('assets/images/no-image.jpg'),
-              fit: BoxFit.cover,
-              height: _screenSize.height * 0.2,
+          Hero(
+            tag: movie.movieId,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20.0),
+              child: GestureDetector(
+                child: FadeInImage(
+                  image: NetworkImage(movie.getPosterImage()),
+                  placeholder: AssetImage('assets/images/no-image.jpg'),
+                  fit: BoxFit.cover,
+                  height: _screenSize.height * 0.2,
+                ),
+                onTap: () {
+                  Navigator.pushNamed(context, 'details', arguments: movie);
+                },
+              ),
             ),
           ),
           SizedBox(
@@ -61,13 +70,6 @@ class CardMovie extends StatelessWidget {
           )
         ],
       ),
-    );
-
-    return GestureDetector(
-      child: movieCard,
-      onTap: () {
-        Navigator.pushNamed(context, 'details', arguments: movie);
-      },
     );
   }
 }

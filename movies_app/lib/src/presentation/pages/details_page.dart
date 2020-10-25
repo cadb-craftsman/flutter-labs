@@ -9,7 +9,6 @@ class DetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Movie movie = ModalRoute.of(context).settings.arguments;
-    provider.getCastMovie(movie.id.toString());
 
     return Scaffold(
       body: CustomScrollView(
@@ -20,7 +19,7 @@ class DetailsPage extends StatelessWidget {
             SizedBox(height: 10.0),
             _posterTitle(context, movie),
             _description(movie),
-            _footer(context),
+            _footer(context, movie),
           ])),
         ],
       ),
@@ -58,11 +57,14 @@ class DetailsPage extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 20.0),
       child: Row(
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20.0),
-            child: Image(
-              image: NetworkImage(movie.getPosterImage()),
-              height: 150.0,
+          Hero(
+            tag: movie.movieId,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(20.0),
+              child: Image(
+                image: NetworkImage(movie.getPosterImage()),
+                height: 150.0,
+              ),
             ),
           ),
           SizedBox(width: 20.0),
@@ -98,25 +100,18 @@ class DetailsPage extends StatelessWidget {
     );
   }
 
-  Widget _footer(BuildContext context) {
+  Widget _footer(BuildContext context, Movie movie) {
     final _screenSize = MediaQuery.of(context).size;
     return Container(
       width: double.infinity,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            padding: EdgeInsets.only(left: 20.0),
-            child: Text(
-              'Actors',
-              style: Theme.of(context).textTheme.headline6,
-            ),
-          ),
           SizedBox(
             height: 5.0,
           ),
-          StreamBuilder(
-            stream: provider.castStream,
+          FutureBuilder(
+            future: provider.getCastMovie(movie.id.toString()),
             builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
               if (snapshot.hasData) {
                 return CardCast(casts: snapshot.data);

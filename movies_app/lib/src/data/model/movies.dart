@@ -41,6 +41,7 @@ class Movies {
 }
 
 class Movie {
+  String movieId;
   String posterPath;
   bool adult;
   String overview;
