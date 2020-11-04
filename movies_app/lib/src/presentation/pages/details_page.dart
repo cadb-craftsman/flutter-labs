@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movies_app/src/data/model/movies.dart';
-import 'package:movies_app/src/data/provider/cast_provider.dart';
+
+import 'package:movies_app/src/domain/model/movies.dart';
+import 'package:movies_app/src/data/providers/cast_provider.dart';
 import 'package:movies_app/src/presentation/widgets/card_cast_widget.dart';
 
 class DetailsPage extends StatelessWidget {

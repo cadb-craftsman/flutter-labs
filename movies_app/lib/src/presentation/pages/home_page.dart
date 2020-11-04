@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/src/data/delegates/search_delegate.dart';
 
-import 'package:movies_app/src/data/provider/movie_provider.dart';
+import 'package:movies_app/src/data/providers/movie_provider.dart';
 import 'package:movies_app/src/presentation/widgets/card_swipe_widget.dart';
 import 'package:movies_app/src/presentation/widgets/card_movie_widget.dart';
 
@@ -18,7 +19,9 @@ class HomePage extends StatelessWidget {
           actions: [
             IconButton(
               icon: Icon(Icons.search),
-              onPressed: () {},
+              onPressed: () {
+                showSearch(context: context, delegate: DataSearchDelegate(), query: 'Introduce una pelicula');
+              },
             )
           ],
         ),
