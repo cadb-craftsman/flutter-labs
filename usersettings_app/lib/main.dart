@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:usersettings_app/src/domain/SettingsUser.dart';
 import 'package:usersettings_app/src/presentation/pages/home_page.dart';
 import 'package:usersettings_app/src/presentation/pages/settings_page.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final settingsUser = new SettingsUser();
+  await settingsUser.init();
   runApp(MyApp());
 }
 
