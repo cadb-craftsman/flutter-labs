@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:formvalidation_app/src/presentation/bloc/provider.dart';
-import 'package:formvalidation_app/src/presentation/pages/home_page.dart';
-import 'package:formvalidation_app/src/presentation/pages/login_page.dart';
-import 'package:formvalidation_app/src/presentation/pages/product_page.dart';
+import 'package:formvalidation_app/src/features/presentation/bloc/provider.dart';
+import 'package:formvalidation_app/src/features/presentation/pages/home_page.dart';
+import 'package:formvalidation_app/src/features/presentation/pages/login_page.dart';
+import 'package:formvalidation_app/src/features/presentation/pages/product_page.dart';
 
 void main() => runApp(MyApp());
 

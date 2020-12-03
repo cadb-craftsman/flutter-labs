@@ -1,0 +1,11 @@
+{
+  "appName": "FormValidationApp",
+  "urlBase": "https://woowrale-flutter-course.firebaseio.com",
+  "properties": [
+    {
+      "path": "alert",
+      "icon": "add_alert",
+      "text": "Alerts"
+    }
+  ]
+}

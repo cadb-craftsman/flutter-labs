@@ -14,7 +14,7 @@ class _SliderPageState extends State<SliderPage>
 
   @override
   void initState() {
-    _controller = AnimationController(vsync: this);
+    _controller = AnimationController(value: this);
     super.initState();
   }
 

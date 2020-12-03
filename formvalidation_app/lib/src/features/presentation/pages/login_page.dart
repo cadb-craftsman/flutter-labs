@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:formvalidation_app/src/presentation/widgets/background_widget.dart';
-import 'package:formvalidation_app/src/presentation/widgets/login_form_widget.dart';
+import 'package:formvalidation_app/src/features/presentation/widgets/background_widget.dart';
+import 'package:formvalidation_app/src/features/presentation/widgets/login_form_widget.dart';
 
 class LoginPage extends StatelessWidget {
   static final routeName = 'login';

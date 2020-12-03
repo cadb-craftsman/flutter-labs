@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:formvalidation_app/src/presentation/bloc/login_bloc.dart';
-export 'package:formvalidation_app/src/presentation/bloc/login_bloc.dart';
+import 'package:formvalidation_app/src/features/presentation/bloc/login_bloc.dart';
 
 class Provider extends InheritedWidget {
   static Provider _instance;

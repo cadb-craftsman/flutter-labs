@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:formvalidation_app/src/presentation/bloc/provider.dart';
-import 'package:formvalidation_app/src/presentation/pages/home_page.dart';
+import 'package:formvalidation_app/src/features/presentation/bloc/login_bloc.dart';
+import 'package:formvalidation_app/src/features/presentation/bloc/provider.dart';
+import 'package:formvalidation_app/src/features/presentation/pages/home_page.dart';
 
 class LoginFormWidget extends StatelessWidget {
   @override
