@@ -31,6 +31,7 @@ class _ProductPageState extends State<ProductPage> {
       key: scaffoldKey,
       appBar: AppBar(
         title: Text('Product Page'),
+        backgroundColor: Colors.deepPurple,
         actions: [
           _buildIconButton(Icons.photo_size_select_actual, selectPicture),
           _buildIconButton(Icons.camera_alt, takePicture),
@@ -128,6 +129,7 @@ class _ProductPageState extends State<ProductPage> {
     return SwitchListTile(
       title: Text('Avaliable:'),
       value: product.available,
+      activeColor: Colors.deepPurple,
       onChanged: (value) {
         setState(() {
           product.available = value;
@@ -141,7 +143,7 @@ class _ProductPageState extends State<ProductPage> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        color: Colors.blue,
+        color: Colors.deepPurple,
         textColor: Colors.white,
         label: Text('Save'),
         icon: Icon(Icons.save),
@@ -166,8 +168,10 @@ class _ProductPageState extends State<ProductPage> {
     }
     formKey.currentState.save();
 
-    if (_image.path != null) {
-      _secureUrl = await _productBloc.uploadImage(_image);
+    if (_image != null) {
+      if (_image.path != null && _image.path.isNotEmpty) {
+        _secureUrl = await _productBloc.uploadImage(_image);
+      }
     }
 
     if (_secureUrl.isNotEmpty) {

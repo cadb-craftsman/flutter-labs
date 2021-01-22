@@ -18,6 +18,7 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Home Page'),
+        backgroundColor: Colors.deepPurple,
       ),
       body: _buildStreamBuilder(),
       floatingActionButton: _buildFloatingActionButton(context),
@@ -53,7 +54,34 @@ class _HomePageState extends State<HomePage> {
             _productBloc.deleteProduct(product);
           });
         },
-        child: _buildListTile(context, product));
+        child: _buildCard(context, product));
+  }
+
+  Widget _buildCard(BuildContext context, Product product) {
+    return Card(
+      margin: EdgeInsets.only(top: 10.0),
+      child: Column(
+        children: <Widget>[
+          _buildImageProduct(product),
+          _buildListTile(context, product),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildImageProduct(Product product) {
+    if (product.photoUrl == null) {
+      return Image.asset(
+        'assets/images/no-image.png',
+        height: 250,
+      );
+    } else {
+      return FadeInImage(
+        height: 250,
+        image: NetworkImage(product.photoUrl),
+        placeholder: AssetImage('assets/images/jar-loading.gif'),
+      );
+    }
   }
 
   Widget _buildListTile(BuildContext context, Product product) {
@@ -69,6 +97,7 @@ class _HomePageState extends State<HomePage> {
   Widget _buildFloatingActionButton(BuildContext context) {
     return FloatingActionButton(
         child: Icon(Icons.add),
+        backgroundColor: Colors.deepPurple,
         onPressed: () {
           Navigator.pushNamed(context, ProductPage.routeName);
         });

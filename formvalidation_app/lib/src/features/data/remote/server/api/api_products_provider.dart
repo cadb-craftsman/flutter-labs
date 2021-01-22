@@ -14,7 +14,4 @@ abstract class ApiProductsProvider {
 
   //Create a new Product with Post method
   Future<bool> update(ProductModel productModel);
-
-  //Upload an image to the Server
-  Future<String> upload(File image);
 }

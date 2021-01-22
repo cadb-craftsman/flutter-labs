@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:formvalidation_app/src/core/utils/utils.dart';
+import 'package:formvalidation_app/src/features/domain/models/user.dart';
 import 'package:formvalidation_app/src/features/presentation/bloc/login_bloc.dart';
 import 'package:formvalidation_app/src/features/presentation/bloc/provider.dart';
 import 'package:formvalidation_app/src/features/presentation/pages/home_page.dart';
+import 'package:formvalidation_app/src/features/presentation/pages/register_page.dart';
 
 class LoginFormWidget extends StatelessWidget {
   @override
@@ -18,7 +21,7 @@ class LoginFormWidget extends StatelessWidget {
         children: [
           SafeArea(child: Container(height: 200.0)),
           _buildContainerForm(size, bloc),
-          _buildTitleText('Forgot Password?'),
+          _buildFlatButton(context, 'Sign In'),
           SizedBox(height: 100.0),
         ],
       ),
@@ -56,6 +59,14 @@ class LoginFormWidget extends StatelessWidget {
               offset: Offset(0.0, 5.0),
               spreadRadius: 3.0)
         ]);
+  }
+
+  Widget _buildFlatButton(BuildContext context, String text) {
+    return FlatButton(
+        onPressed: () {
+          Navigator.pushReplacementNamed(context, RegisterPage.routeName);
+        },
+        child: _buildTitleText(text));
   }
 
   Widget _buildTitleText(String text) {
@@ -133,9 +144,16 @@ class LoginFormWidget extends StatelessWidget {
         });
   }
 
-  _onPressButton(BuildContext context, LoginBloc bloc) {
+  _onPressButton(BuildContext context, LoginBloc bloc) async {
     print('Email: ${bloc.email}');
     print('Password: ${bloc.password}');
-    Navigator.pushNamed(context, HomePage.routeName);
+    UserToken _userToken = await bloc
+        .loginUser(new User(email: bloc.email, password: bloc.password));
+
+    if (_userToken.isOk) {
+      Navigator.pushReplacementNamed(context, HomePage.routeName);
+    } else {
+      showAlertMessage(context, _userToken.message);
+    }
   }
 }

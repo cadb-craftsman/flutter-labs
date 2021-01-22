@@ -1,7 +1,9 @@
 import 'package:formvalidation_app/src/features/domain/repositories/repository_factory.dart';
 import 'package:formvalidation_app/src/features/domain/usecases/create_product_usecase.dart';
-import 'package:formvalidation_app/src/features/domain/usecases/delet_product_usecase.dart';
+import 'package:formvalidation_app/src/features/domain/usecases/delete_product_usecase.dart';
 import 'package:formvalidation_app/src/features/domain/usecases/get_all_products_usecase.dart';
+import 'package:formvalidation_app/src/features/domain/usecases/login_user_usecase.dart';
+import 'package:formvalidation_app/src/features/domain/usecases/register_user_usecase.dart';
 import 'package:formvalidation_app/src/features/domain/usecases/update_product_usecase.dart';
 import 'package:formvalidation_app/src/features/domain/usecases/upload_image_usecase.dart';
 
@@ -19,6 +21,8 @@ class UseCaseFactory {
   DeleteProductUseCase _deleteProductUseCase;
   UpdateProductUseCase _updateProductUseCase;
   UploadImageUseCase _uploadImageUseCase;
+  RegisterUserUseCase _registerUserUseCase;
+  LoginUserUsecase _loginUserUseCase;
 
   CreateProductUseCase get createProductUseCase {
     if (_createProductUseCase == null) {
@@ -58,5 +62,21 @@ class UseCaseFactory {
           new UploadImageUseCase(repository: _factory.getImageRepository);
     }
     return _uploadImageUseCase;
+  }
+
+  RegisterUserUseCase get registerUserUseCase {
+    if (_registerUserUseCase == null) {
+      _registerUserUseCase =
+          new RegisterUserUseCase(repository: _factory.getUserRepository);
+    }
+    return _registerUserUseCase;
+  }
+
+  LoginUserUsecase get loginUserUseCase {
+    if (_loginUserUseCase == null) {
+      _loginUserUseCase =
+          new LoginUserUsecase(repository: _factory.getUserRepository);
+    }
+    return _loginUserUseCase;
   }
 }

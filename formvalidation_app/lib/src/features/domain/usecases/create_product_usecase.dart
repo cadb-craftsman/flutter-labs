@@ -3,7 +3,7 @@ import 'package:formvalidation_app/src/features/domain/repositories/product_repo
 import 'package:formvalidation_app/src/features/domain/usecases/params.dart';
 
 class CreateProductUseCase extends UseCaseBase<bool, Params> {
-  ProductRepository repository = ProductRepository();
+  ProductRepository repository;
 
   CreateProductUseCase({this.repository});
 

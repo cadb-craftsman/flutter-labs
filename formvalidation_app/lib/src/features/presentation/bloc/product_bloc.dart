@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'dart:async';
+import 'package:rxdart/rxdart.dart';
 
 import 'package:formvalidation_app/src/features/domain/models/product.dart';
 import 'package:formvalidation_app/src/features/domain/usecases/params.dart';
@@ -16,7 +17,7 @@ class ProductBloc {
     getAllProducts();
   }
 
-  final _productStreamController = StreamController<List<Product>>.broadcast();
+  final _productStreamController = BehaviorSubject<List<Product>>();
 
   Stream<List<Product>> get productStreamController =>
       _productStreamController.stream;

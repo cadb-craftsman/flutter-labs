@@ -42,6 +42,8 @@ dependencies:
   mime_type: ^0.3.2
   # Cloudinary client to uploads images
   cloudinary_public: ^0.6.2
+  #Shared Preferences package
+  shared_preferences:
 
 dev_dependencies:
   flutter_test:

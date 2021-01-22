@@ -1,13 +1,15 @@
 import 'dart:convert';
-import 'dart:io';
-
-import 'package:cloudinary_public/cloudinary_public.dart';
+import 'package:formvalidation_app/src/core/settings/user_settings.dart';
 import 'package:http/http.dart' as http;
 import 'package:formvalidation_app/src/core/utils/load_properties.dart';
 import 'package:formvalidation_app/src/features/data/remote/models/product_model.dart';
 import 'package:formvalidation_app/src/features/data/remote/server/api/api_products_provider.dart';
 
+
 class ProductProvider implements ApiProductsProvider {
+
+  final _settings = UserSettings();
+
   @override
   Future<bool> create(ProductModel productModel) async {
     final response = await http.post(await _getUrl('products'),
@@ -42,6 +44,7 @@ class ProductProvider implements ApiProductsProvider {
 
   Future<String> _getUrl(String urlComplement) async {
     final _urlBase = await properties.loadDataByKey('urlBase');
+    //final String url = '$_urlBase/$urlComplement.json?auth=${_settings.token}';
     final String url = '$_urlBase/$urlComplement.json';
 
     return url;
@@ -56,21 +59,4 @@ class ProductProvider implements ApiProductsProvider {
     final decodeData = json.decode(response.body);
   }
 
-  @override
-  Future<String> upload(File image) async {
-    final cloudinary = CloudinaryPublic(
-      'di9ffipdp',
-      'lvcr0fh8',
-      cache: false,
-    );
-    CloudinaryResponse response = await cloudinary.uploadFile(
-      CloudinaryFile.fromFile(
-        image.path,
-        resourceType: CloudinaryResourceType.Image,
-      ),
-    );
-
-    print(response.secureUrl);
-    return response.secureUrl;
-  }
 }

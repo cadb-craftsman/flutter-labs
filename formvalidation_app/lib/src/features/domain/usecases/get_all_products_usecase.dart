@@ -5,7 +5,7 @@ import 'package:formvalidation_app/src/features/domain/usecases/params.dart';
 
 class GetAllProductsUseCase extends UseCaseBase<List<Product>, Params> {
 
-  ProductRepository repository = ProductRepository();
+  ProductRepository repository;
 
   GetAllProductsUseCase({this.repository});
 

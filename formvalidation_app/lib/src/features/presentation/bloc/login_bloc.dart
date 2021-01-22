@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'package:formvalidation_app/src/features/domain/models/user.dart';
+import 'package:formvalidation_app/src/features/domain/usecases/params.dart';
+import 'package:formvalidation_app/src/features/domain/usecases/usecase_factory.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'package:formvalidation_app/src/features/presentation/bloc/validators.dart';
 
 class LoginBloc with Validators {
-
   final _emailController = BehaviorSubject<String>();
   final _passwordController = BehaviorSubject<String>();
 
@@ -31,6 +33,16 @@ class LoginBloc with Validators {
 
   set password(value) {
     _passwordController.value = value;
+  }
+
+  Future<UserToken> registerUser(User user) async {
+    return await UseCaseFactory.getFactory()
+        .registerUserUseCase(ParamsUser(user: user));
+  }
+
+  Future<UserToken> loginUser(User user) async {
+    return await UseCaseFactory.getFactory()
+        .loginUserUseCase(ParamsUser(user: user));
   }
 
   dispose() {

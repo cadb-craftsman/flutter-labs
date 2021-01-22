@@ -2,10 +2,10 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:formvalidation_app/src/core/error/failure.dart';
-import 'package:formvalidation_app/src/features/domain/source/remote_datasource.dart';
+import 'package:formvalidation_app/src/features/domain/source/remote_image_datasource.dart';
 
 class ImageRepository {
-  RemoteDatasource remoteDatasource;
+  RemoteImageDatasource remoteDatasource;
 
   ImageRepository({this.remoteDatasource});
 
